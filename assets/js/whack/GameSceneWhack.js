@@ -40,9 +40,9 @@ class GameSceneWhack extends Phaser.Scene {
     gameState.scoreText = this.add.text(50, 25, 'Score: 0', { fontSize: '25px', fill: '#fff' });
 
     // Countdown Text
-    gameState.countdownText = this.add.text(300, 25, { fontSize: '15px', fill: '#fff' });
+    gameState.countdownText = this.add.text(300, 32, { fontSize: '15px', fill: '#fff' });
     // Timed Event
-    gameState.gameOver = this.time.addEvent({ delay: 10000, callback: gameOver, callbackScope: this });
+    gameState.gameOver = this.time.addEvent({ delay: 10050, callback: gameOver, callbackScope: this });
     gameState.moleMoving = this.time.addEvent({ delay: 1000, callback: moving, callbackScope: this, loop: true });
 
     function moving() {
@@ -54,12 +54,29 @@ class GameSceneWhack extends Phaser.Scene {
     function gameOver() {
         gameState.moleMoving.stop();
       };
+
+    gameState.highscoreText = this.add.text(200, 475, { fontSize: '15px', fill: '#fff' });
+
+
   };
     update() {
-      gameState.countdownText.setText(`Time Left: ${Math.floor(10000 - gameState.gameOver.getElapsed())}`)
+      gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
 
+      if (localStorage.getItem("Whackamole") !== null) {
+        gameState.highscore = parseInt(localStorage.getItem("Whackamole"));
+    }
+      
+      gameState.countdownText.setText(`Time Left: ${Math.floor(10000 - gameState.gameOver.getElapsed())}`);
+      
+      if (Math.floor(10000 - gameState.gameOver.getElapsed()) <= '0' ) {
+        gameState.countdownText.setText(`    Game Over!`);
+        if (gameState.score > gameState.highscore) {
+          gameState.highscore = gameState.score;
+          localStorage.setItem("Whackamole", gameState.highscore);
+        }
+      }
       gameState.moleStanding.on('pointerup', function () {
-        gameState.score++
+        gameState.score += 1;
         gameState.scoreText.setText(`Score: ${gameState.score}`);
       });
     }

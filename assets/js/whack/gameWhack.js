@@ -1,5 +1,6 @@
 const gameState = {
   score: 0,
+  highscore: 0,
   fixedPos: [100, 200, 300, 400],
 };
 

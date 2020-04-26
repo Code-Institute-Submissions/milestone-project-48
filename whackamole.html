@@ -12,6 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/boot.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine.css" />
 
+    <!--    Load Tests  -->
+    <script type="text/javascript" src="/milestone-project-2/assets/js/phaserSpec.js"></script>
+
+    <script type="text/javascript" src="/milestone-project-2/assets/js/script.js"></script>
+
     <!-------------------------------------Bootstrap-------------------------------->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -21,21 +26,27 @@
     <!----------------------------------- Phaser framework --------------------------->
     <script src="/milestone-project-2/assets/js/phaser.min.js" charset="uft-8"></script>
 
-    <title>GamePages!</title>
+    <!--------------------------------------- Whack a mole game ------------------------------------------>
+    <script type="text/javascript" src="/milestone-project-2/assets/js/whack/StartSceneWhack.js"></script>
+    <script type="text/javascript" src="/milestone-project-2/assets/js/whack/GameSceneWhack.js"></script>
+    <script type="text/javascript" src="/milestone-project-2/assets/js/whack/gameWhack.js"></script>
+
+    <title>Whack A Mole Game!</title>
 </head>
 
 <body>
+
     <div class="container">
         <div class="row">
             <div class="col text-center">
-                <p>Welcome to different games!</p>
+                <h1>WHACK A MOLE!</h1>
             </div>
         </div>
+    </div>
+    <div class="container">
         <div class="row">
-            <div class="col-4">
-                <a href="/milestone-project-2/whackamole.html">
-                    <img src="/milestone-project-2/assets/pics/mole.gif" alt="mole picture">
-                </a>
+            <div class="col">
+                <div id="whack-game"></div>
             </div>
         </div>
     </div>
