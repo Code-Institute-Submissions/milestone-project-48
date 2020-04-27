@@ -4,7 +4,7 @@ class GameSceneDodge extends Phaser.Scene {
   };
   preload() {
 
-    this.load.image('bug', '/milestone-project-2/assets/pics/alienEnemy.png');
+    this.load.image('enemy', '/milestone-project-2/assets/pics/alienEnemy.png');
     this.load.image('platform', '/milestone-project-2/assets/pics/platform.png');
     this.load.image('alien', '/milestone-project-2/assets/pics/bluecreature.png');
     this.load.image('bullet', '/milestone-project-2/assets/pics/Pokeball.png');
@@ -12,13 +12,16 @@ class GameSceneDodge extends Phaser.Scene {
 
   create() {
 
-    gameState.alien = this.physics.add.sprite(225, 455, 'alien').setScale(.1);
+    gameState.alien = this.physics.add.sprite(225, 440, 'alien').setScale(.13);
 
     gameState.scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '25px', fill: '#fff' }).setDepth(1);
+    gameState.highscoreText = this.add.text(290, 0, 'Highscore: ', { fontSize: '25px', fill: '#fff' }).setDepth(1);
 
     gameState.alien.setCollideWorldBounds(true);
 
     gameState.cursors = this.input.keyboard.createCursorKeys();
+
+    gameState.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     //////////////////////////////////////////// groups and loops
     const platforms = this.physics.add.staticGroup();
@@ -28,16 +31,16 @@ class GameSceneDodge extends Phaser.Scene {
 
     gameState.bullets = this.physics.add.group();
 
-    const bugs = this.physics.add.group();
+    const enemies = this.physics.add.group();
 
-    function bugGen() {
-      const xCoord = Math.random() * 500;
-      bugs.create(xCoord, 30, 'bug').setScale(.2);
+    function enemyGen() {
+      const xCoord = Math.random() * 480;
+      enemies.create(xCoord, 40, 'enemy').setScale(.1);
     }
 
-    gameState.bugGenLoop = this.time.addEvent({
+    gameState.enemyGenLoop = this.time.addEvent({
       delay: 150,
-      callback: bugGen,
+      callback: enemyGen,
       callbackScope: this,
       loop: true,
     });
@@ -45,46 +48,54 @@ class GameSceneDodge extends Phaser.Scene {
     /////////////////////////////////////////// physics
     this.physics.add.collider(gameState.alien, platforms);
 
-    this.physics.add.collider(gameState.bullets, platforms, function(bullet){
+    this.physics.add.overlap(gameState.bullets, platforms, function (bullet) {
       bullet.destroy();
     })
 
-    this.physics.add.collider(bugs, gameState.bullets, function (bug, bullet) {
-      bug.destroy();
+    this.physics.add.overlap(enemies, gameState.bullets, function (enemy, bullet) {
+      enemy.destroy();
       bullet.destroy();
-      
-      this.physics.pause();
       gameState.score += 10;
       gameState.scoreText.setText(`Score: ${gameState.score}`);
     })
 
-    this.physics.add.overlap(bugs, platforms, function (bug) {
-      bug.destroy();
+    this.physics.add.overlap(enemies, platforms, function (enemy) {
+      enemy.destroy();
     })
 
-    this.physics.add.overlap(gameState.alien, bugs, () => {
-      bugGenLoop.destroy();
+    this.physics.add.overlap(gameState.alien, enemies, () => {
+      gameState.enemyGenLoop.destroy();
       this.physics.pause();
-      this.add.text(180, 250, 'Game Over', { fontSize: '15px', fill: '#000000' });
-      this.add.text(152, 270, 'Click to Restart', { fontSize: '15px', fill: '#000000' });
 
-      this.input.on('pointerup', () => {
+      this.add.text(190, 200, 'Game Over!', { fontSize: '25px', fill: '#fff' });
+      let restart = this.add.text(100, 240, 'Click here to Restart!', { fontSize: '25px', fill: '#fff' });
+      restart.setInteractive();
+      restart.on('pointerup', () => {
         gameState.score = 0;
         this.scene.restart();
       });
     });
 
-    gameState.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
-
-
-  };
+  }
 
   update() {
 
+    gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
+
+    if (localStorage.getItem("DodgeGame") !== null) {
+      gameState.highscore = parseInt(localStorage.getItem("DodgeGame"));
+    }
+
+    if (gameState.score > gameState.highscore) {
+      gameState.highscore = gameState.score;
+      localStorage.setItem("DodgeGame", gameState.highscore);
+      
+    }
+
     function bulletGen() {
       const xAlien = gameState.alien.x;
-      const yAlien = gameState.alien.y - 30;
-      gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.2).setDepth(1).setGravityY(-500);
+      const yAlien = gameState.alien.y - 20;
+      gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.1).setDepth(1).setGravityY(-500);
     }
 
     if (gameState.cursors.left.isDown) {
@@ -100,7 +111,11 @@ class GameSceneDodge extends Phaser.Scene {
     }
 
     if (gameState.score > 1000) {
-      gameState.bugGenLoop.delay = 100;
+      gameState.enemyGenLoop.delay = 100;
+    }
+
+    if (gameState.score > 2000) {
+      gameState.enemyGenLoop.delay = 50;
     }
   }
 }

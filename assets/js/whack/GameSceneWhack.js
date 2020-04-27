@@ -37,10 +37,13 @@ class GameSceneWhack extends Phaser.Scene {
     gameState.moleStanding.setInteractive();
 
     // Score Text
-    gameState.scoreText = this.add.text(50, 25, 'Score: 0', { fontSize: '25px', fill: '#000000' });
+    gameState.scoreText = this.add.text(50, 0, 'Score: 0', { fontSize: '25px', fill: '#fff' });
 
     // Countdown Text
-    gameState.countdownText = this.add.text(300, 32, { fontSize: '15px', fill: '#000000' });
+    gameState.countdownText = this.add.text(250, 0, 'Time Left: ', { fontSize: '25px', fill: '#fff' });
+    // Highscore Text
+    gameState.highscoreText = this.add.text(120, 475, 'HighScore: ', { fontSize: '25px', fill: '#fff' });
+   
     // Timed Event
     gameState.gameOver = this.time.addEvent({ delay: 10000, callback: gameOver, callbackScope: this });
     gameState.moleMoving = this.time.addEvent({ delay: 600, callback: moving, callbackScope: this, loop: true });
@@ -52,41 +55,44 @@ class GameSceneWhack extends Phaser.Scene {
     };
     // ending function
     function gameOver() {
-        gameState.moleMoving.destroy();
-        
-        this.add.text(190, 230, 'Game Over', { fontSize: '25px', fill: '#000000' }).setDepth(1);
-        this.add.text(130, 250, 'Click to Restart', { fontSize: '25px', fill: '#000000' }).setDepth(1);
-        // restart scene
-        this.input.on('pointerup', () =>{
-          gameState.score = 0;
-          this.scene.restart();
-        });
-      };
+      gameState.moleMoving.destroy();
 
-    gameState.highscoreText = this.add.text(200, 475, { fontSize: '15px', fill: '#000000' });
+      this.add.text(190, 225, 'Game Over', { fontSize: '25px', fill: '#000000' }).setDepth(1);
+      let restart = this.add.text(100, 255, 'Click here to Restart', { fontSize: '25px', fill: '#000000' }).setDepth(1);
+      restart.setInteractive();
+      // restart scene
+      restart.on('pointerup', () => {
+        gameState.score = 0;
+        this.scene.restart();
+      });
+    };
+
 
 
   };
-    update() {
-      gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
+  update() {
+    gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
 
-      if (localStorage.getItem("Whackamole") !== null) {
-        gameState.highscore = parseInt(localStorage.getItem("Whackamole"));
+    if (localStorage.getItem("Whackamole") !== null) {
+      gameState.highscore = parseInt(localStorage.getItem("Whackamole"));
     }
-      
-      gameState.countdownText.setText(`Time Left: ${Math.floor(10000 - gameState.gameOver.getElapsed())}`);
-      
-      if (Math.floor(10000 - gameState.gameOver.getElapsed()) <= '0' ) {
-        gameState.countdownText.setText(`    Game Over!`);
-        if (gameState.score > gameState.highscore) {
-          gameState.highscore = gameState.score;
-          localStorage.setItem("Whackamole", gameState.highscore);
-          
-        }
+
+    gameState.countdownText.setText(`Time Left: ${Math.floor(10000 - gameState.gameOver.getElapsed())}`);
+
+    if (Math.floor(10000 - gameState.gameOver.getElapsed()) <= '0') {
+      gameState.countdownText.setText(`    Game Over!`);
+      if (gameState.score > gameState.highscore) {
+        gameState.highscore = gameState.score;
+        localStorage.setItem("Whackamole", gameState.highscore);
+
       }
-      gameState.moleStanding.on('pointerdown', function () {
+    }
+
+    gameState.moleStanding.on('pointerdown', function () {
+      if (Math.floor(10000 - gameState.gameOver.getElapsed()) > '0') {
         gameState.score += 1;
         gameState.scoreText.setText(`Score: ${gameState.score}`);
-      });
-    }
+      }
+    })
+  }
 }
