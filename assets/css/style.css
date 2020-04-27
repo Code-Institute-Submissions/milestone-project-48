@@ -1,0 +1,100 @@
+.wrapper-index {
+    background-image: url(/milestone-project-2/assets/pics/portrait-background-1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-width: 100vw;
+    min-height: 100vh;
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+.wrapper-whack {
+    
+    background-image: url(/milestone-project-2/assets/pics/forrestBackground.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.gamebackground {
+    background-image: url(/milestone-project-2/assets/pics/gameBackground.png);
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-size: 900px 1300px;
+    background-position: top;
+    min-height: 1200px;
+    min-width: 800px;
+}
+
+/*------------------ color and padding ---------------*/
+.whitesmoke {
+    color: whitesmoke;
+}
+
+.teal-background {
+    background-color: rgba(0, 128, 128, 0.5);
+}
+
+.h1-padding {
+    padding: 5px;
+}
+
+.h1-padding-games {
+    padding: 15px
+}
+
+.top-padding {
+    padding-top: 10vh;
+}
+
+.top-padding-s {
+    padding-top: 3vh;
+}
+
+.bottom-padding {
+    padding-bottom: 10vh;
+}
+
+p, img {
+    padding-top: 25px;
+}
+
+.whack-padding {
+    padding-top: 300px;
+}
+
+/*---------------- borders and width/height ---------------------*/
+.width-height {
+    width: 700px;
+    height: 700px;
+}
+
+.border-radius {
+    border-radius: 25px;
+}
+
+
+.index-img {
+    width: 300px;
+    height: 250px;
+}
+
+/*--------------------- default styling ----------------------------*/
+
+a:hover {
+    text-decoration: none;
+}
+
+.no-transform {
+    color: whitesmoke;
+    text-decoration: none;
+    text-transform: none;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.no-transform:hover {
+    text-decoration: none;
+    text-transform: none;
+}

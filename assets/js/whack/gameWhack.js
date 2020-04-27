@@ -6,10 +6,10 @@ const gameState = {
 
 const config = {
   type: Phaser.AUTO,
-  backgroundColor: 0xbada55,
+  transparent: true,
   parent: 'whack-game',
   scale: {
-    mode: Phaser.Scale.ENVELOP,
+    mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
     width: 500,
     height: 500,

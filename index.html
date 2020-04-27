@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-------------------------- CSS --------------------------->
-    <link rel="stylesheet" type="text/css" href="/milestone-project-2/assets/css/style.css">
     <!----------------------------  Jasmine Framework ----------------------------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.5.0/jasmine-html.js"></script>
@@ -17,6 +15,8 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/efe33daf5d.js" crossorigin="anonymous"></script>
 
+    <!-------------------------- CSS --------------------------->
+    <link rel="stylesheet" type="text/css" href="/milestone-project-2/assets/css/style.css">
 
     <!----------------------------------- Phaser framework --------------------------->
     <script src="/milestone-project-2/assets/js/phaser.min.js" charset="uft-8"></script>
@@ -25,17 +25,33 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <p>Welcome to different games!</p>
+    <div class="wrapper-index">
+        <div class="container">
+            <div class="row top-padding bottom-padding">
+                <div class="col text-center">
+                    <h1 class="whitesmoke h1-padding teal-background border-radius">Welcome to different games!</h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <a href="/milestone-project-2/whackamole.html">
-                    <img src="/milestone-project-2/assets/pics/mole.gif" alt="mole picture">
-                </a>
+            <div class="row top-padding bottom-padding">
+                <div class="col d-flex justify-content-center">
+                    <a href="/milestone-project-2/whackamole.html">
+                        <p class="text-center no-transform">Whack a Mole!</p>
+                        <img class="index-img border-radius teal-background" src="/milestone-project-2/assets/pics/moleStandingIndex.png" alt="mole picture">
+                    </a>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    <a href="/milestone-project-2/dodge.html">
+                        <p class="text-center no-transform">Dodge!</p>
+                        <img class="index-img border-radius teal-background" src="/milestone-project-2/assets/pics/bluecreature.png" alt="dodge picture">
+                    </a>
+                </div>
+                <a href=""></a>
+                <div class="col d-flex justify-content-center">
+                    <a href="/milestone-project-2/platform.html">
+                        <p class="text-center no-transform">Platform!</p>
+                        <img class="index-img border-radius teal-background" src="/milestone-project-2/assets/pics/mole.gif" alt="platform picture">
+                    </a>
+                </div>
             </div>
         </div>
     </div>
