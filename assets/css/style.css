@@ -26,6 +26,15 @@
     min-height: 100vh;
 }
 
+.wrapper-platform {
+    background-image: url(/milestone-project-2/assets/pics/villageBackground.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+
+}
+
 .gamebackground-whack {
     background-image: url(/milestone-project-2/assets/pics/gameBackground.png);
     opacity: 0.9;
@@ -74,7 +83,7 @@ p, img {
     padding-top: 25px;
 }
 
-.whack-padding {
+.game-padding {
     padding-top: 50px;
 }
 
