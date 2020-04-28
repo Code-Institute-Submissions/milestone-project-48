@@ -9,8 +9,7 @@
     font-size: 20px;
 }
 
-.wrapper-whack {
-    
+.wrapper-whack {    
     background-image: url(/milestone-project-2/assets/pics/forrestBackground.jpg);
     background-size: cover;
     background-position: center;
@@ -32,7 +31,6 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
-
 }
 
 .gamebackground-whack {
