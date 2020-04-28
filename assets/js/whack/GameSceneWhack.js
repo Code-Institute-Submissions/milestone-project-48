@@ -90,7 +90,7 @@ class GameSceneWhack extends Phaser.Scene {
 
     gameState.moleStanding.on('pointerdown', function () {
       if (Math.floor(10000 - gameState.gameOver.getElapsed()) > '0') {
-        gameState.score += 1;
+        gameState.score++;
         gameState.scoreText.setText(`Score: ${gameState.score}`);
       }
     })
