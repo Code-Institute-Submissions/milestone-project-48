@@ -1,34 +1,27 @@
 class GameSceneDodge extends Phaser.Scene {
   constructor() {
     super({ key: 'GameSceneDodge' });
-  };
-  preload() {
+  }
 
+  preload() {
     this.load.image('enemy', '/milestone-project-2/assets/pics/alienEnemy.png');
     this.load.image('platform', '/milestone-project-2/assets/pics/platform.png');
     this.load.image('alien', '/milestone-project-2/assets/pics/bluecreature.png');
     this.load.image('bullet', '/milestone-project-2/assets/pics/Pokeball.png');
-  };
+  }
 
   create() {
-
     gameState.alien = this.physics.add.sprite(225, 440, 'alien').setScale(.13);
-
     gameState.scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '25px', fill: '#fff' }).setDepth(1);
     gameState.highscoreText = this.add.text(290, 0, 'Highscore: ', { fontSize: '25px', fill: '#fff' }).setDepth(1);
-
     gameState.alien.setCollideWorldBounds(true);
-
     gameState.cursors = this.input.keyboard.createCursorKeys();
-
     gameState.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
     //////////////////////////////////////////// groups and loops
     const platforms = this.physics.add.staticGroup();
-
     platforms.create(250, 490, 'platform').setScale(3, .5).refreshBody();
     platforms.create(250, -30, 'platform').setScale(3, .5).refreshBody();
-
     gameState.bullets = this.physics.add.group();
 
     const enemies = this.physics.add.group();
@@ -57,11 +50,11 @@ class GameSceneDodge extends Phaser.Scene {
       bullet.destroy();
       gameState.score += 10;
       gameState.scoreText.setText(`Score: ${gameState.score}`);
-    })
+    });
 
     this.physics.add.overlap(enemies, platforms, function (enemy) {
       enemy.destroy();
-    })
+    });
 
     this.physics.add.overlap(gameState.alien, enemies, () => {
       gameState.enemyGenLoop.destroy();
@@ -79,7 +72,6 @@ class GameSceneDodge extends Phaser.Scene {
   }
 
   update() {
-
     gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
 
     if (localStorage.getItem("DodgeGame") !== null) {
@@ -89,7 +81,7 @@ class GameSceneDodge extends Phaser.Scene {
     if (gameState.score > gameState.highscore) {
       gameState.highscore = gameState.score;
       localStorage.setItem("DodgeGame", gameState.highscore);
-      
+
     }
 
     function bulletGen() {

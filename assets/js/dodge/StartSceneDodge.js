@@ -1,6 +1,6 @@
 class StartSceneDodge extends Phaser.Scene {
     constructor() {
-        super({ key: 'StartSceneDodge' })
+        super({ key: 'StartSceneDodge' });
     }
 
     create() {
@@ -9,8 +9,8 @@ class StartSceneDodge extends Phaser.Scene {
         this.add.text(100, 250, 'Press SPACE to shoot!', { fill: '#ff0000', fontSize: '25px' });
 
         this.input.on('pointerdown', () => {
-            this.scene.stop('StarSceneDodge')
-            this.scene.start('GameSceneDodge')
+            this.scene.stop('StarSceneDodge');
+            this.scene.start('GameSceneDodge');
         });
     }
 }

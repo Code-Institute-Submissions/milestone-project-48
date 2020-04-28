@@ -2,6 +2,7 @@ class GameScenePlatform extends Phaser.Scene {
   constructor() {
     super({ key: 'GameScenePlatform' });
   }
+
   preload() {
     this.load.spritesheet('bird', '/milestone-project-2/assets/pics/birdFlying3.png', { frameWidth: 73.5, frameHeight: 45 });
     this.load.image('plat1', '/milestone-project-2/assets/pics/plat1.png');
@@ -62,7 +63,6 @@ class GameScenePlatform extends Phaser.Scene {
     gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
     gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
     
-    
     // colliders
     this.physics.add.overlap(gameState.platforms, gameState.platforms, (platform) => {
       platform.destroy();
@@ -78,27 +78,21 @@ class GameScenePlatform extends Phaser.Scene {
         this.scene.restart();
       });
     });
-
     
     this.physics.add.overlap(gameState.bird, gameState.goal, () => {
       gameState.score += 10;
       this.scene.restart();
     });
 
-
     // camera
-
     gameState.width = 500;
     gameState.height = 1000;
     this.cameras.main.setBounds(0, 0, gameState.width, gameState.height);
     this.physics.world.setBounds(0, 0, gameState.width, gameState.height);
     this.cameras.main.startFollow(gameState.bird, true, 0.5, 0.5);
-
-
   }
 
   update() {    
-
     gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
     gameState.scoreText.setText(`Score: ${gameState.score}`);
 
@@ -108,8 +102,7 @@ class GameScenePlatform extends Phaser.Scene {
 
     if (gameState.score > gameState.highscore) {
       gameState.highscore = gameState.score;
-      localStorage.setItem("PlatformGame", gameState.highscore);
-      
+      localStorage.setItem("PlatformGame", gameState.highscore); 
     }
 
     // Up & Down
@@ -117,7 +110,7 @@ class GameScenePlatform extends Phaser.Scene {
       gameState.bird.setVelocityY(-200);
     } else {
       gameState.bird.setVelocityY(100);
-    };
+    }
     // right & left
     if (gameState.cursors.right.isDown) {
       gameState.bird.setVelocityX(200);

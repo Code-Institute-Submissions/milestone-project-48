@@ -1,11 +1,12 @@
 class GameSceneWhack extends Phaser.Scene {
   constructor() {
     super({ key: 'GameSceneWhack' });
-  };
+  }
+
   preload() {
     this.load.image('mole', '/milestone-project-2/assets/pics/mole.gif');
     this.load.image('moleStanding', '/milestone-project-2/assets/pics/moleStanding.png')
-  };
+  }
 
   create() {
     this.add.moles = [
@@ -45,31 +46,10 @@ class GameSceneWhack extends Phaser.Scene {
     gameState.highscoreText = this.add.text(120, 475, 'HighScore: ', { fontSize: '25px', fill: '#fff' });
    
     // Timed Event
-    gameState.gameOver = this.time.addEvent({ delay: 10000, callback: gameOver, callbackScope: this });
-    gameState.moleMoving = this.time.addEvent({ delay: 600, callback: moving, callbackScope: this, loop: true });
+    gameState.gameOver = this.time.addEvent({ delay: 10000, callback: this.gameOver, callbackScope: this });
+    gameState.moleMoving = this.time.addEvent({ delay: 600, callback: this.moving, callbackScope: this, loop: true });
+  }
 
-    function moving() {
-      let x = gameState.fixedPos[Math.floor(Math.random() * 4)];
-      let y = gameState.fixedPos[Math.floor(Math.random() * 4)];
-      gameState.moleStanding.setPosition(x, y);
-    };
-    // ending function
-    function gameOver() {
-      gameState.moleMoving.destroy();
-
-      this.add.text(190, 225, 'Game Over', { fontSize: '25px', fill: '#000000' }).setDepth(1);
-      let restart = this.add.text(100, 255, 'Click here to Restart', { fontSize: '25px', fill: '#000000' }).setDepth(1);
-      restart.setInteractive();
-      // restart scene
-      restart.on('pointerup', () => {
-        gameState.score = 0;
-        this.scene.restart();
-      });
-    };
-
-
-
-  };
   update() {
     gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
 
@@ -84,7 +64,6 @@ class GameSceneWhack extends Phaser.Scene {
       if (gameState.score > gameState.highscore) {
         gameState.highscore = gameState.score;
         localStorage.setItem("Whackamole", gameState.highscore);
-
       }
     }
 
@@ -94,5 +73,24 @@ class GameSceneWhack extends Phaser.Scene {
         gameState.scoreText.setText(`Score: ${gameState.score}`);
       }
     })
+  }
+
+  moving() {
+    let x = gameState.fixedPos[Math.floor(Math.random() * 4)];
+    let y = gameState.fixedPos[Math.floor(Math.random() * 4)];
+    gameState.moleStanding.setPosition(x, y);
+  }
+  
+  gameOver() {
+    gameState.moleMoving.destroy();
+
+    this.add.text(190, 225, 'Game Over', { fontSize: '25px', fill: '#000000' }).setDepth(1);
+    let restart = this.add.text(100, 255, 'Click here to Restart', { fontSize: '25px', fill: '#000000' }).setDepth(1);
+    restart.setInteractive();
+    // restart scene
+    restart.on('pointerup', () => {
+      gameState.score = 0;
+      this.scene.restart();
+    });
   }
 }
