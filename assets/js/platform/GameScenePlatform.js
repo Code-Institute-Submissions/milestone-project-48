@@ -33,8 +33,8 @@ class GameScenePlatform extends Phaser.Scene {
     gameState.goal = this.physics.add.staticImage(225, 0, 'door').setOrigin(0, 0);
 
 
-    gameState.scoreText = this.add.text(0, 0, 'Score: ', { fontSize: '25px', fill: '#000000'}).setScrollFactor(0).setDepth(1);
-    gameState.highscoreText = this.add.text(270, 0, 'HighScore: ', { fontSize: '25px', fill: '#000000' }).setScrollFactor(0).setDepth(1);
+    gameState.scoreText = this.add.text(20, 10, 'Score: ', { fontSize: '25px', fill: '#000000'}).setScrollFactor(0).setDepth(1);
+    gameState.highscoreText = this.add.text(270, 10, 'HighScore: ', { fontSize: '25px', fill: '#000000' }).setScrollFactor(0).setDepth(1);
     // platforms
     gameState.xCoord = [20, 120, 200, 300, 420];
     gameState.yCoord = [900, 750, 600, 450, 300, 150];
@@ -54,8 +54,8 @@ class GameScenePlatform extends Phaser.Scene {
     this.physics.add.overlap(gameState.bird, gameState.platforms, () => {
       this.physics.pause();
 
-      this.add.text(190, gameState.bird.y - 40, 'Game Over!', { fontSize: '25px', fill: '#000000' });
-      this.add.text(100, gameState.bird.y + 20, 'Press SPACE to Restart!', { fontSize: '25px', fill: '#000000' });
+      this.add.text(180, 220, 'Game Over!', { fontSize: '25px', fill: '#000000' }).setScrollFactor(0);
+      this.add.text(80, 270, 'Press SPACE to Restart!', { fontSize: '25px', fill: '#000000' }).setScrollFactor(0);
       this.input.keyboard.on('keydown-SPACE', () => {
         gameState.score = 0;
         this.scene.restart();
