@@ -107,6 +107,12 @@ a:hover {
     text-decoration: none;
 }
 
+.p-margin-padding {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .no-transform {
     color: whitesmoke;
     text-decoration: none;

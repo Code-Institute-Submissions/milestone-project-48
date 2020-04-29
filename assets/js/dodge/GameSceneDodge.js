@@ -16,7 +16,7 @@ class GameSceneDodge extends Phaser.Scene {
     gameState.highscoreText = this.add.text(290, 0, 'Highscore: ', { fontSize: '25px', fill: '#fff' }).setDepth(1);
     gameState.alien.setCollideWorldBounds(true);
     gameState.cursors = this.input.keyboard.createCursorKeys();
-    gameState.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+    gameState.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
 
     //////////////////////////////////////////// groups and loops
     const platforms = this.physics.add.staticGroup();
@@ -61,9 +61,8 @@ class GameSceneDodge extends Phaser.Scene {
       this.physics.pause();
 
       this.add.text(190, 200, 'Game Over!', { fontSize: '25px', fill: '#fff' });
-      let restart = this.add.text(100, 240, 'Click here to Restart!', { fontSize: '25px', fill: '#fff' });
-      restart.setInteractive();
-      restart.on('pointerup', () => {
+      this.add.text(100, 240, 'Press SPACE to Restart!', { fontSize: '25px', fill: '#fff' });
+      this.input.keyboard.on('keydown-SPACE', () => {
         gameState.score = 0;
         this.scene.restart();
       });
@@ -87,27 +86,27 @@ class GameSceneDodge extends Phaser.Scene {
     function bulletGen() {
       const xAlien = gameState.alien.x;
       const yAlien = gameState.alien.y - 20;
-      gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.1).setDepth(1).setGravityY(-500);
-    }
+      gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.1).setDepth(1).setGravityY(-1500);
+  }
 
-    if (gameState.cursors.left.isDown) {
-      gameState.alien.setVelocityX(-200);
-    } else if (gameState.cursors.right.isDown) {
-      gameState.alien.setVelocityX(200);
-    } else {
-      gameState.alien.setVelocityX(0);
-    };
+  if(gameState.cursors.left.isDown) {
+    gameState.alien.setVelocityX(-200);
+  } else if(gameState.cursors.right.isDown) {
+    gameState.alien.setVelocityX(200);
+  } else {
+  gameState.alien.setVelocityX(0);
+};
 
-    if (Phaser.Input.Keyboard.JustDown(gameState.spacebar)) {
-      bulletGen();
-    }
+if (Phaser.Input.Keyboard.JustDown(gameState.wKey)) {
+  bulletGen();
+}
 
-    if (gameState.score > 1000) {
-      gameState.enemyGenLoop.delay = 100;
-    }
+if (gameState.score > 1000) {
+  gameState.enemyGenLoop.delay = 100;
+}
 
-    if (gameState.score > 2000) {
-      gameState.enemyGenLoop.delay = 50;
-    }
+if (gameState.score > 2000) {
+  gameState.enemyGenLoop.delay = 50;
+}
   }
 }

@@ -38,31 +38,12 @@ class GameScenePlatform extends Phaser.Scene {
     gameState.yCoord = [900, 750, 600, 450, 300, 150];
 
     gameState.platforms = this.physics.add.staticGroup();
+    for (let i = 0; i < 20; i++) {
     gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
     gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
     gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
     gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
-    
+    }
     // colliders
     this.physics.add.overlap(gameState.platforms, gameState.platforms, (platform) => {
       platform.destroy();
