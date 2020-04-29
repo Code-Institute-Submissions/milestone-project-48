@@ -45,13 +45,13 @@ class GameSceneWhack extends Phaser.Scene {
 
     // Timed Event
     gameState.gameOver = this.time.addEvent({ delay: 10000, callback: this.gameOver, callbackScope: this });
-    gameState.moleMoving = this.time.addEvent({ delay: 600, callback: this.moving, callbackScope: this, loop: true });
+    gameState.moleMoving = this.time.addEvent({ delay: 650, callback: this.moving, callbackScope: this, loop: true });
 
     this.anims.create({
       key: 'smack',
       frames: this.anims.generateFrameNumbers('moleTest', { start: 0, end: 2 }),
       frameRate: 40,
-      repeat: 1,
+      repeat: 0,
     });
   }
   // changing fixed positions/objects in the game, starting animations, updating the code throughout the game
@@ -62,7 +62,7 @@ class GameSceneWhack extends Phaser.Scene {
     if (localStorage.getItem("Whackamole") !== null) {
       gameState.highscore = parseInt(localStorage.getItem("Whackamole"));
     }
-    let timeLeft = Math.floor(10000 - gameState.gameOver.getElapsed())/1000;
+    let timeLeft = Math.floor(10000 - gameState.gameOver.getElapsed()) / 1000;
     gameState.countdownText.setText(`Time Left: ${timeLeft.toFixed(1)}s`);
 
     if (Math.floor(10000 - gameState.gameOver.getElapsed()) <= '0') {
@@ -78,6 +78,9 @@ class GameSceneWhack extends Phaser.Scene {
         gameState.score += 10;
         gameState.scoreText.setText(`Score: ${gameState.score}`);
         gameState.moleStanding.anims.play('smack', true);
+        let x = gameState.fixedPos[Math.floor(Math.random() * 4)];
+        let y = gameState.fixedPos[Math.floor(Math.random() * 4)];
+        gameState.moleStanding.setPosition(x, y);
         event.stopPropagation();
       }
     })
@@ -87,6 +90,7 @@ class GameSceneWhack extends Phaser.Scene {
     let x = gameState.fixedPos[Math.floor(Math.random() * 4)];
     let y = gameState.fixedPos[Math.floor(Math.random() * 4)];
     gameState.moleStanding.setPosition(x, y);
+    gameState.moleMoving.delay = Phaser.Math.Between(1000,2000);
   }
   // end of game
   gameOver() {
