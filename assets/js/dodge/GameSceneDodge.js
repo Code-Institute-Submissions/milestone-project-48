@@ -18,7 +18,11 @@ class GameSceneDodge extends Phaser.Scene {
     gameState.highscoreText = this.add.text(140, 470, 'Highscore: ', { fontSize: '25px', fill: '#fff' }).setDepth(1);
     gameState.alien.setCollideWorldBounds(true);
     gameState.cursors = this.input.keyboard.createCursorKeys();
+    // WASD control
     gameState.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    gameState.aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    gameState.dKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    gameState.sKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
 
     // groups and loops
     const platforms = this.physics.add.staticGroup();
@@ -92,15 +96,15 @@ class GameSceneDodge extends Phaser.Scene {
       gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.1).setDepth(1).setAccelerationY(-4000);
     }
     // keyboard & mouse input
-    if (gameState.cursors.left.isDown) {
+    if (gameState.cursors.left.isDown || gameState.aKey.isDown) {
       gameState.alien.setVelocityX(-200);
-    } else if (gameState.cursors.right.isDown) {
+    } else if (gameState.cursors.right.isDown || gameState.dKey.isDown) {
       gameState.alien.setVelocityX(200);
     } else {
       gameState.alien.setVelocityX(0);
     };
 
-    if (Phaser.Input.Keyboard.JustDown(gameState.wKey)) {
+    if (Phaser.Input.Keyboard.JustDown(gameState.wKey) || Phaser.Input.Keyboard.JustDown(gameState.cursors.up)) {
       bulletGen();
     }
     // increase difficulty

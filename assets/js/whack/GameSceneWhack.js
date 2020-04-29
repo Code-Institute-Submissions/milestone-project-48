@@ -50,8 +50,8 @@ class GameSceneWhack extends Phaser.Scene {
     this.anims.create({
       key: 'smack',
       frames: this.anims.generateFrameNumbers('moleTest', { start: 0, end: 2 }),
-      frameRate: 5,
-      repeat: 0,
+      frameRate: 40,
+      repeat: 1,
     });
   }
   // changing fixed positions/objects in the game, starting animations, updating the code throughout the game

@@ -20,8 +20,12 @@ class GameScenePlatform extends Phaser.Scene {
     gameState.active = true;
     gameState.bird = this.physics.add.sprite(0, 980, 'bird').setScale(.5);
     gameState.bird.setCollideWorldBounds(true);
-
     gameState.cursors = this.input.keyboard.createCursorKeys();
+    // WASD control
+    gameState.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    gameState.aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    gameState.dKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    gameState.sKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     // animation
     this.anims.create({
       key: 'idle',
@@ -90,15 +94,15 @@ class GameScenePlatform extends Phaser.Scene {
     }
     // keyboard & mouse input
     // Up & Down
-    if (gameState.cursors.up.isDown) {
+    if (gameState.cursors.up.isDown || gameState.wKey.isDown) {
       gameState.bird.setVelocityY(-200);
     } else {
       gameState.bird.setVelocityY(100);
     }
     // right & left
-    if (gameState.cursors.right.isDown) {
+    if (gameState.cursors.right.isDown || gameState.dKey.isDown) {
       gameState.bird.setVelocityX(200);
-    } else if (gameState.cursors.left.isDown) {
+    } else if (gameState.cursors.left.isDown || gameState.aKey.isDown) {
       gameState.bird.setVelocityX(-200);
     } else {
       gameState.bird.setVelocityX(0);
