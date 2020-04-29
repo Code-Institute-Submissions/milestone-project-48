@@ -89,7 +89,7 @@ class GameSceneDodge extends Phaser.Scene {
     function bulletGen() {
       const xAlien = gameState.alien.x;
       const yAlien = gameState.alien.y - 20;
-      gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.1).setDepth(1).setGravityY(-1500);
+      gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.1).setDepth(1).setAccelerationY(-4000);
     }
     // keyboard & mouse input
     if (gameState.cursors.left.isDown) {

@@ -62,8 +62,8 @@ class GameSceneWhack extends Phaser.Scene {
     if (localStorage.getItem("Whackamole") !== null) {
       gameState.highscore = parseInt(localStorage.getItem("Whackamole"));
     }
-
-    gameState.countdownText.setText(`Time Left: ${Math.floor(10000 - gameState.gameOver.getElapsed()) / 1000}`);
+    let timeLeft = Math.floor(10000 - gameState.gameOver.getElapsed())/1000;
+    gameState.countdownText.setText(`Time Left: ${timeLeft.toFixed(1)}s`);
 
     if (Math.floor(10000 - gameState.gameOver.getElapsed()) <= '0') {
       gameState.countdownText.setText(`    Game Over!`);
