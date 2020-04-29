@@ -2,7 +2,7 @@ class GameScenePlatform extends Phaser.Scene {
   constructor() {
     super({ key: 'GameScenePlatform' });
   }
-
+  // adding images/spritesheets pictures
   preload() {
     this.load.spritesheet('bird', '/milestone-project-2/assets/pics/birdFlying3.png', { frameWidth: 73.5, frameHeight: 45 });
     this.load.image('plat1', '/milestone-project-2/assets/pics/plat1.png');
@@ -12,9 +12,9 @@ class GameScenePlatform extends Phaser.Scene {
     this.load.image('door', '/milestone-project-2/assets/pics/door.png');
     this.load.image('background', '/milestone-project-2/assets/pics/skyBackground.png');
   }
-
+  //create the layout for the game/adding fixed positions/objects to the game
   create() {
-    // player & essentials
+    // text, sprites & fixed variables
     const bg = this.add.image(500, 500, 'background').setScale(.8).setDepth(-1);
 
     gameState.active = true;
@@ -22,7 +22,7 @@ class GameScenePlatform extends Phaser.Scene {
     gameState.bird.setCollideWorldBounds(true);
 
     gameState.cursors = this.input.keyboard.createCursorKeys();
-
+    // animation
     this.anims.create({
       key: 'idle',
       frames: this.anims.generateFrameNumbers('bird', { start: 0, end: 3 }),
@@ -39,10 +39,10 @@ class GameScenePlatform extends Phaser.Scene {
 
     gameState.platforms = this.physics.add.staticGroup();
     for (let i = 0; i < 20; i++) {
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
-    gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
+      gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat1');
+      gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat2');
+      gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat3');
+      gameState.platforms.create(gameState.xCoord[Math.floor(Math.random() * 5)], gameState.yCoord[Math.floor(Math.random() * 6)], 'plat4');
     }
     // colliders
     this.physics.add.overlap(gameState.platforms, gameState.platforms, (platform) => {
@@ -59,7 +59,7 @@ class GameScenePlatform extends Phaser.Scene {
         this.scene.restart();
       });
     });
-    
+
     this.physics.add.overlap(gameState.bird, gameState.goal, () => {
       gameState.score += 10;
       this.scene.restart();
@@ -72,8 +72,9 @@ class GameScenePlatform extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, gameState.width, gameState.height);
     this.cameras.main.startFollow(gameState.bird, true, 0.5, 0.5);
   }
-
-  update() {    
+  // changing fixed positions/objects in the game, starting animations, updating the code throughout the game
+  update() {
+    // highscore get
     gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
     gameState.scoreText.setText(`Score: ${gameState.score}`);
 
@@ -83,9 +84,9 @@ class GameScenePlatform extends Phaser.Scene {
 
     if (gameState.score > gameState.highscore) {
       gameState.highscore = gameState.score;
-      localStorage.setItem("PlatformGame", gameState.highscore); 
+      localStorage.setItem("PlatformGame", gameState.highscore);
     }
-
+    // keyboard & mouse input
     // Up & Down
     if (gameState.cursors.up.isDown) {
       gameState.bird.setVelocityY(-200);

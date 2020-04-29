@@ -2,11 +2,11 @@ class StartScenePlatform extends Phaser.Scene {
     constructor() {
         super({ key: 'StartScenePlatform' })
     }
-
+    // background
     preload() {
         this.load.image('background', '/milestone-project-2/assets/pics/skyBackground.png');
     }
-
+    //create the layout for the game/adding fixed positions/objects to the game
     create() {
         const bg = this.add.image(250, 250, 'background').setScale(.3).setDepth(-1);
 

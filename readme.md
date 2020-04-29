@@ -23,7 +23,7 @@ I will be using the following CDN's and frameworks:
 
 ## UX
 
-This project was made for people that love indie games and is easily scalable. I took inspiration from old html game websites that I've played when i was young. I also started using CodeCademy and they gave me the idea of using Phaser. I also got a lot of inspiration for my codes through their courses.
+This project was made for people that love indie games and is easily scalable. I took inspiration from old html game websites that I've played when I was young. I also started using CodeCademy and they gave me the idea of using Phaser. I also got a lot of inspiration for my codes through their courses.
 
 The webpage sole purpose is to showcase different games and should be very easy to navigate. 
 

@@ -1,9 +1,10 @@
+// fixed variable throughout the game
 const gameState = {
   score: 0,
   highscore: 0,
   fixedPos: [100, 200, 300, 400],
 };
-
+// configuration of canvas/game
 const config = {
   type: Phaser.AUTO,
   transparent: true,

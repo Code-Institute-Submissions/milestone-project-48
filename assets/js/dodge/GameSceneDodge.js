@@ -3,14 +3,16 @@ class GameSceneDodge extends Phaser.Scene {
     super({ key: 'GameSceneDodge' });
   }
 
+  // adding images/spritesheets pictures
   preload() {
     this.load.image('enemy', '/milestone-project-2/assets/pics/alienEnemy.png');
     this.load.image('platform', '/milestone-project-2/assets/pics/platform.png');
     this.load.image('alien', '/milestone-project-2/assets/pics/bluecreature.png');
     this.load.image('bullet', '/milestone-project-2/assets/pics/Pokeball.png');
   }
-
+  //create the layout for the game/adding fixed positions/objects to the game
   create() {
+    // text, sprites & fixed variables
     gameState.alien = this.physics.add.sprite(225, 440, 'alien').setScale(.13);
     gameState.scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '25px', fill: '#fff' }).setDepth(1);
     gameState.highscoreText = this.add.text(290, 0, 'Highscore: ', { fontSize: '25px', fill: '#fff' }).setDepth(1);
@@ -18,7 +20,7 @@ class GameSceneDodge extends Phaser.Scene {
     gameState.cursors = this.input.keyboard.createCursorKeys();
     gameState.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
 
-    //////////////////////////////////////////// groups and loops
+    // groups and loops
     const platforms = this.physics.add.staticGroup();
     platforms.create(250, 490, 'platform').setScale(3, .5).refreshBody();
     platforms.create(250, -30, 'platform').setScale(3, .5).refreshBody();
@@ -38,7 +40,7 @@ class GameSceneDodge extends Phaser.Scene {
       loop: true,
     });
 
-    /////////////////////////////////////////// physics
+    // physics & colliders
     this.physics.add.collider(gameState.alien, platforms);
 
     this.physics.add.overlap(gameState.bullets, platforms, function (bullet) {
@@ -69,8 +71,9 @@ class GameSceneDodge extends Phaser.Scene {
     });
 
   }
-
+  // changing fixed positions/objects in the game, starting animations, updating the code throughout the game
   update() {
+    // highscore get
     gameState.highscoreText.setText(`Highscore: ${gameState.highscore}`);
 
     if (localStorage.getItem("DodgeGame") !== null) {
@@ -82,31 +85,31 @@ class GameSceneDodge extends Phaser.Scene {
       localStorage.setItem("DodgeGame", gameState.highscore);
 
     }
-
+    // adding pokeball bullets
     function bulletGen() {
       const xAlien = gameState.alien.x;
       const yAlien = gameState.alien.y - 20;
       gameState.bullets.create(xAlien, yAlien, 'bullet').setScale(.1).setDepth(1).setGravityY(-1500);
-  }
+    }
+    // keyboard & mouse input
+    if (gameState.cursors.left.isDown) {
+      gameState.alien.setVelocityX(-200);
+    } else if (gameState.cursors.right.isDown) {
+      gameState.alien.setVelocityX(200);
+    } else {
+      gameState.alien.setVelocityX(0);
+    };
 
-  if(gameState.cursors.left.isDown) {
-    gameState.alien.setVelocityX(-200);
-  } else if(gameState.cursors.right.isDown) {
-    gameState.alien.setVelocityX(200);
-  } else {
-  gameState.alien.setVelocityX(0);
-};
+    if (Phaser.Input.Keyboard.JustDown(gameState.wKey)) {
+      bulletGen();
+    }
+    // increase difficulty
+    if (gameState.score > 1000) {
+      gameState.enemyGenLoop.delay = 100;
+    }
 
-if (Phaser.Input.Keyboard.JustDown(gameState.wKey)) {
-  bulletGen();
-}
-
-if (gameState.score > 1000) {
-  gameState.enemyGenLoop.delay = 100;
-}
-
-if (gameState.score > 2000) {
-  gameState.enemyGenLoop.delay = 50;
-}
+    if (gameState.score > 2000) {
+      gameState.enemyGenLoop.delay = 50;
+    }
   }
 }
