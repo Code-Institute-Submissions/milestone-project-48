@@ -14,8 +14,8 @@ class GameSceneDodge extends Phaser.Scene {
   create() {
     // text, sprites & fixed variables
     gameState.alien = this.physics.add.sprite(225, 440, 'alien').setScale(.13);
-    gameState.scoreText = this.add.text(0, 0, 'Score: 0', { fontSize: '25px', fill: '#fff' }).setDepth(1);
-    gameState.highscoreText = this.add.text(290, 0, 'Highscore: ', { fontSize: '25px', fill: '#fff' }).setDepth(1);
+    gameState.scoreText = this.add.text(200, 10, 'Score: 0', { fontSize: '25px', fill: '#fff' }).setDepth(1);
+    gameState.highscoreText = this.add.text(140, 470, 'Highscore: ', { fontSize: '25px', fill: '#fff' }).setDepth(1);
     gameState.alien.setCollideWorldBounds(true);
     gameState.cursors = this.input.keyboard.createCursorKeys();
     gameState.wKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);

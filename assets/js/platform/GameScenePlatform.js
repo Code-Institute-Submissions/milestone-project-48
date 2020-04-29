@@ -33,8 +33,8 @@ class GameScenePlatform extends Phaser.Scene {
     gameState.goal = this.physics.add.staticImage(225, 0, 'door').setOrigin(0, 0);
 
 
-    gameState.scoreText = this.add.text(20, 10, 'Score: ', { fontSize: '25px', fill: '#000000'}).setScrollFactor(0).setDepth(1);
-    gameState.highscoreText = this.add.text(270, 10, 'HighScore: ', { fontSize: '25px', fill: '#000000' }).setScrollFactor(0).setDepth(1);
+    gameState.scoreText = this.add.text(200, 10, 'Score: ', { fontSize: '25px', fill: '#000000'}).setScrollFactor(0).setDepth(1);
+    gameState.highscoreText = this.add.text(140, 470, 'HighScore: ', { fontSize: '25px', fill: '#000000' }).setScrollFactor(0).setDepth(1);
     // platforms
     gameState.xCoord = [20, 120, 200, 300, 420];
     gameState.yCoord = [900, 750, 600, 450, 300, 150];
