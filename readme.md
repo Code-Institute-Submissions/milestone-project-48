@@ -23,14 +23,14 @@ I will be using the following CDN's and frameworks:
 
 ## UX
 
-This project was made for people that love indie games and is easily scalable. I took inspiration from old html game websites that I've played when I was young. I also started using CodeCademy and they gave me the idea of using Phaser. I also got a lot of inspiration for my codes through their courses.
+This project was made for people that love indie games and is easily scalable. I took inspiration from old html game websites that I played when I was young. I also started using CodeCademy and they gave me the idea of using Phaser. I also got a lot of inspiration for my codes through their courses.
 
 The webpage sole purpose is to showcase different games and should be very easy to navigate. 
 
-* As a user i'd like an easy to use webpage with easy navigation.
-* If i visit any form of gaming websites I'd like the focus to be on the games, and have a variety of games to choose from. I'd like the information of how to play the game to be displayed in the game and easy to understand.
+* As a user I wouldd like an easy to use webpage with easy navigation.
+* If i visit any form of gaming websites I would like the focus to be on the games, and have a variety of games to choose from. I would like the information of how to play the game to be displayed in the game and easy to understand.
 
-I chose the project based on the example ideas provided in the Interactive Frontend Development module but didn't like the example games given and therefore decided to create other games.
+I chose the project based on the example ideas provided in the Interactive Frontend Development module but did not like the example games given and therefore decided to create other games.
 
 ## Features
 
@@ -43,7 +43,7 @@ I chose the project based on the example ideas provided in the Interactive Front
 * Easy to use "Navbar"
 * Everything except of the game itself scales down to mobile devices
 
-In my platform game i had the idea of putting a key in the level which has to be collected in order to go through the door/goal. I also would've increased the amount of platforms spawning the higher the score.
+In my platform game I had the idea of putting a key in the level which has to be collected in order to go through the door/goal. I also would have increased the amount of platforms spawning the higher the score.
 
 I also thought of the idea of increasing the speed at which the mole moves in Whack a Mole and provide 3 difficulties.
 
@@ -59,14 +59,14 @@ I have only used:
 
 ## Testing
 
-For testing purposes I uploaded the site and put it live so that i could send the link to family and friends. They tried pressing and going on different stuff and gave me feedback so that i could change and fix things. This was of enourmous help since they often came with new ideas or saw problems that i didn't notice.
+For testing purposes I uploaded the site and put it live so that I could send the link to family and friends. They tried pressing everything and navigating throughout the page and gave me feedback so that I could change and fix things. This was of enourmous help since they often came with new ideas or saw problems that I did not notice.
 
-I have been constantly using developer tools in chrome in order to make the screen size smaller, check the layout of the different devices and in general see things that shouldn't happen.
+I have been constantly using developer tools in chrome in order to make the screen size smaller, check the layout of the different devices and in general see things that should not happen.
 
 - I used developer tools a lot for for example:
 
-    * If i click on something: console.log('test');
-    * If i wanted to check the buildup of an element/object/class: console.log(this);
+    * If I click on something: console.log('test');
+    * If I wanted to check the buildup of an element/object/class: console.log(this);
     * Pausing javascript code and double checking the sending or output of code/functions;
     * Figuring out what css styles/classes to change in order to get the wanted outcome;
 
@@ -76,15 +76,15 @@ I have been constantly using developer tools in chrome in order to make the scre
 
 - Visual Studio Code is my go to IDE which also helps checking mistakes in syntax and in general tells you if there is some code that is wrong.
 
-- I specifically clicked on all the links and all the forms and made sure everything works as intended.
+- I specifically clicked on all the links and made sure everything works as intended.
 
-- Since i am writing this code on visual studio, I always tested my changes before commiting them to github.
+- Since I am writing this code on visual studio, I always tested my changes before commiting them to github.
 
 **Devices Used:**
 
 * Samsung Galaxy S8 – Android 8.0
 * Desktop Custom PC - Windows 10
-* OnePlus 6T - OxygenOS, Andoird 10
+* OnePlus 6T - OxygenOS, Android 10
 
 **Browsers Used:**
 
@@ -94,10 +94,10 @@ I have been constantly using developer tools in chrome in order to make the scre
 
 ## Deployment
 
-I created my repository on github and in the end hosted it on github pages since i sent that link to friends in order for them to give me feedback.
+I created my repository on github and in the end hosted it on github pages since I sent that link to friends in order for them to give me feedback.
 
 * There are no other versions.
-* There are also no differences since this is the only version that i used. There are only differences between my local version on visual code and my github pages version before i commit the changes.
+* There are also no differences since this is the only version that I used. There are only differences between my local version on visual code and my github pages version before I commit the changes.
 
 Link to the deployed version: https://johnsletvoldhafenrichter.github.io/milestone-project-2/
 
@@ -111,7 +111,7 @@ The photos used in this site were obtained from:
 * https://www.pexels.com/photo/background-dramatic-forest-hdr-1371606/
 * https://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17002
 
-I didnt copy code but got lots of inspiration from:
+I did not copy code but got lots of inspiration from:
 
 * Phaser
 * CodeCademy
